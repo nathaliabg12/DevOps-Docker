@@ -13,10 +13,10 @@ Ambas as versões compartilham o mesmo banco de dados MongoDB, permitindo que as
 - Conectado a rede app_network para comunicação com os outros serviços
 - Tanto a versão web quanto a versão terminal se conectam a esse MongoDB
 ### Tomcat - versão web
-- Uso da imagem oficial do Tomcat
+- Baseado no Dockerfile no diretório students-web
+  - Criação do .war
+  - O arquivo .war é copiado para a pasta webapps do Tomcat, que faz o deploy automático
 - Depende do Mongo para estar rodando
-- Variáveis de ambiente via .env
-- O arquivo .war é copiado para a pasta webapps do Tomcat, que faz o deploy automático
 - Conectado a app_network para acessar o MongoDB
 - É possível acessar em http://localhost:8080/students
 ### Terminal - versão em python
@@ -31,8 +31,7 @@ Ambas as versões compartilham o mesmo banco de dados MongoDB, permitindo que as
 - Necessário ter Docler e Docker Compose instalados
 - Para a versão web: Maven, caso precise reconstruir o WAR
 ### Passos:
-- Se necessaŕio reconstruir o WAR, no diretório students-web executar o comando mvn clean package
-- Para iniciar todos os containers, executar na pasta Estudantes, docker-compose up –d
+- Para iniciar todos os containers, executar na pasta Estudantes, docker-compose build --no-cache && docker-compose up -d
 - Acessar as interfaces:
 - Na web: http://localhost:8080/students
 - No terminal: docker exec -it terminal python ./main.py
